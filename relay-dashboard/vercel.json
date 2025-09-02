@@ -5,9 +5,5 @@
   ],
   "routes": [
     { "src": "/api/state", "dest": "/api/state.js" }
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/style.css", "dest": "/public/style.css" },
-    { "src": "/api/getState", "dest": "/api/getState.js" },
-    { "src": "/api/toggleRelay", "dest": "/api/toggleRelay.js" }
   ]
 }
