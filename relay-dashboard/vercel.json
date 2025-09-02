@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/style.css", "dest": "/public/style.css" },
+    { "src": "/api/getState", "dest": "/api/getState.js" },
+    { "src": "/api/toggleRelay", "dest": "/api/toggleRelay.js" }
+  ]
+}
