@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard Relais ESP32</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Contrôle des relais</h1>
+  <div class="relay">
+    <p>Relais 1: <span id="r1">...</span></p>
+    <button onclick="toggle(1)">Toggle Relais 1</button>
+  </div>
+  <div class="relay">
+    <p>Relais 2: <span id="r2">...</span></p>
+    <button onclick="toggle(2)">Toggle Relais 2</button>
+  </div>
+
+  <script>
+    async function fetchState() {
+      const res = await fetch('/api/getState');
+      const data = await res.json();
+      document.getElementById('r1').textContent = data.relay1 ? 'ON' : 'OFF';
+      document.getElementById('r2').textContent = data.relay2 ? 'ON' : 'OFF';
+    }
+
+    async function toggle(relay) {
+      await fetch(`/api/toggleRelay?relay=${relay}`, { method: 'POST' });
+      fetchState();
+    }
+
+    setInterval(fetchState, 1000);
+    fetchState();
+  </script>
+</body>
+</html>
